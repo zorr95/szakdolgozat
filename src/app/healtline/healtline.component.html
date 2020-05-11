@@ -1,0 +1,221 @@
+<inc-toolbar withBack="false"></inc-toolbar>
+<ion-content width="100%">
+  <ion-toolbar color="primary" style="position: fixed;">
+    <ion-title>{{'HEALTLINE' | translate}}</ion-title>
+  </ion-toolbar>
+
+  <inc-container>
+    <br>
+    <br>
+    <ion-grid style="width: 100%; display: initial;">
+      <ion-card>
+        <br>
+        <br>
+        <br>
+        <ion-row class="r1" size="12" size-md="6">
+          <br>
+          <br>
+          <ion-label style="font-size:20px ;  padding: 2%;color:black; font-weight: 200; ">
+            {{'GENDER' | translate}}</ion-label>
+          <ion-item  class="i4" style="width: 35%  ; align-items: center; ">
+            <ion-label> {{'GENDER' | translate}}
+            </ion-label>
+            <br>
+            <br>
+            <ion-select [formControl]="genderCtrl" placeholder=" {{'SELECT_GENDER' | translate}}" (ionChange)="setForms()"
+              style="min-width: 100%; padding: 0;position: floating ;text-align: -webkit-center;">
+              <ion-select-option *ngFor="let g of Gender" [value]="g.type">
+                {{g.label | translate}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-label style=" font-size:20px ;color:black; font-weight: 200; padding: 2%; " >
+            {{'AGE' | translate}}
+          </ion-label>
+          <br>
+          <ion-item  class="i1" style="width:32%  ;position: relative ; text-align: -webkit-center;left: 5%;">
+            <ion-input type="number" [formControl]="ageCtrl" placeholder=" {{'YEARS' | translate}}"
+              style="width: 25%;position: relative;" clearInput>
+            </ion-input>
+          </ion-item>
+          <br>
+        </ion-row>
+        <br>
+        <ion-row size="12" size-md="6" class="r2">
+          <ion-label style="font-size:20px ;  padding: 2%;color:black; font-weight: 200; ">
+            {{'HEIGHT' | translate}}</ion-label>
+          <br>
+          <ion-item  class="i2"style="width: 25%; position: relative ; text-align: -webkit-center; ">
+            <ion-input type="number" [formControl]="heightCtrl" style="width: 25%; position: relative;"
+              clearInput placeholder="cm">
+            </ion-input>
+          </ion-item>
+          <br>
+          <ion-label style=" font-size:20px ; padding: 2%;color:black; font-weight: 200; ">
+            {{'WEIGHT' | translate}}
+          </ion-label>
+          <br>
+          <br>
+          <ion-item  class="i3" style="width:33%; position: relative ; text-align: -webkit-center;">
+            <ion-input type="number" [formControl]="weightCtrl" style="width: 30%; position: relative;"
+              clearInput placeholder="kg">
+            </ion-input>
+          </ion-item>
+        </ion-row>
+        <br>
+        <br>
+        <br>
+        <ion-row style="justify-content: center;">
+          <ion-item lines="none">
+            <ion-button class="b1" style="position: relative;height: 80%;" (click)="calculate()">
+              <ion-icon slot="start" name="calculator"></ion-icon> {{'CALCULATE' | translate}}
+            </ion-button>
+          </ion-item>
+        </ion-row>
+        <br>
+        <br>
+      </ion-card>
+      <br>
+      <ion-card *ngIf="isShow">
+        <br>
+        <ion-label style=" font-size:20px ; padding:2%; color:black; font-weight: 200; ">
+          {{'WEIGHT_MAINTANCE' | translate}}
+        </ion-label>
+        <ion-row style="padding: 3%;">
+          <ion-col>
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>{{'NUTRIENT_REQUIREMENTS' | translate}}</th>
+                  <th>{{'WEIGHT_MAINTANCE' | translate}}
+                  </th>
+                  <th>{{bmr |  number:'1.1-2'}} kcal </th>
+                  <th>
+                    Kcal/gramms
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> {{'PROTEIN' | translate}}</td>
+                  <td>35%</td>
+                  <td>{{bmrp |  number:'1.1-2' }} kcal</td>
+                  <td>{{bmrpg | number: '1.1-2'}}/g</td>
+                </tr>
+                <tr>
+                  <td> {{'CARBONHYDRATE' | translate}}</td>
+                  <td>55%</td>
+                  <td>{{bmrch |  number:'1.1-2' }} kcal</td>
+                  <td>{{bmrchg | number: '1.1-2'}}/g</td>
+                </tr>
+                <tr>
+                  <td> {{'FAT' | translate}}</td>
+                  <td>15%</td>
+                  <td>{{bmrf |  number:'1.1-2' }} kcal</td>
+                  <td>{{bmrfg | number: '1.1-2'}}/g</td>
+                </tr>
+              </tbody>
+            </table>
+          </ion-col>
+          <ion-col style="width: 20%;">
+            <ion-item lines="none" style="width: 100%;">
+              <canvas id="1"></canvas>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-label style=" font-size:20px ; padding:2%; color:black; font-weight: 200; ">
+          {{'WEIGHT_LOSS' | translate}}
+        </ion-label>
+        <ion-row style="padding: 3%;">
+          <ion-col>
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>{{'NUTRIENT_REQUIREMENTS' | translate}}</th>
+                  <th> {{'WEIGHT_LOSS' | translate}}
+                  </th>
+                  <th>{{wlbmr |  number:'1.1-2' }} kcal</th>
+                  <th>
+                    Kcal/gramms
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> {{'PROTEIN' | translate}}</td>
+                  <td>35%</td>
+                  <td>{{wlp |  number:'1.1-2' }} kcal</td>
+                  <td>{{wlpg | number: '1.1-2'}}/g</td>
+                </tr>
+                <tr>
+                  <td> {{'CARBONHYDRATE' | translate}}</td>
+                  <td>55%</td>
+                  <td>{{wlch |  number:'1.1-2' }} kcal</td>
+                  <td>{{wlchg | number: '1.1-2'}}/g</td>
+                </tr>
+                <tr>
+                  <td> {{'FAT' | translate}}</td>
+                  <td>15%</td>
+                  <td>{{wlf |  number:'1.1-2' }} kcal</td>
+                  <td>{{wlfg | number: '1.1-2'}}/g</td>
+                </tr>
+              </tbody>
+            </table>
+          </ion-col>
+          <ion-col style="width: 20%;">
+            <ion-item lines="none" style="width: 100%;">
+              <canvas id="3"></canvas>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-label style=" font-size:20px ; padding:2%; color:black; font-weight: 200; ">
+          {{'WEIGHT_GAIN' | translate}}
+        </ion-label>
+        <ion-row style="padding: 3%;">
+          <ion-col>
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th>{{'NUTRIENT_REQUIREMENTS' | translate}}</th>
+                  <th>{{'WEIGHT_GAIN' | translate}}
+                  </th>
+                  <th>{{wgbmr |  number:'1.1-2' }} kcal</th>
+                  <th>
+                    Kcal/gramms
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> {{'PROTEIN' | translate}}</td>
+                  <td>35%</td>
+                  <td>{{wgp |  number:'1.1-2' }} kcal</td>
+                  <td>{{wgpg | number: '1.1-2'}}/g</td>
+                </tr>
+                <tr>
+                  <td> {{'CARBONHYDRATE' | translate}}</td>
+                  <td>55%</td>
+                  <td>{{wgch |  number:'1.1-2' }} kcal</td>
+                  <td>{{wgchg | number: '1.1-2'}}/g</td>
+                </tr>
+                <tr>
+                  <td> {{'FAT' | translate}}</td>
+                  <td>15%</td>
+                  <td>{{wgfat |  number:'1.1-2' }} kcal</td>
+                  <td>{{wgfatg | number: '1.1-2'}}/g</td>
+                </tr>
+              </tbody>
+            </table>
+          </ion-col>
+          <ion-col style="width: 20%;">
+            <ion-item lines="none" style="width: 100%;">
+              <canvas id="2"></canvas>
+
+
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-grid>
+  </inc-container>
+</ion-content>

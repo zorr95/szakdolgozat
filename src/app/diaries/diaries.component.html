@@ -1,0 +1,210 @@
+<inc-toolbar withBack="false">
+</inc-toolbar>
+<ion-content width="100%">
+  <ion-toolbar color="primary" style="position: fixed;">
+    <ion-title> {{'DIARIES' | translate}} </ion-title>
+  </ion-toolbar>
+  <inc-container>
+    <br>
+    <br>
+    <br>
+    <ion-grid  class="g" style="display: inline-flex; width: 100%;">
+
+      <ion-button expand="flex" style="text-transform: initial; position: relative;" class="but1"
+        (click)="beforeDay()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-button>
+      <mat-form-field expand="flex" 
+        style="text-transform: initial; text-align: center;position: relative; width: 100%;">
+        <input matInput [matDatepicker]="picker" (dateInput)="addEvent($event)" (dateChange)="addEvent($event)"
+          [value]="today" (click)="addEvent($event)">
+        <mat-datepicker-toggle color="primary" matSuffix [for]="picker">
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker>
+        </mat-datepicker>
+      </mat-form-field>
+      <ion-button class="but2" expand="flex" style="text-transform: initial;position: relative;" (click)="nextDay()">
+        <ion-icon name="arrow-forward-outline"></ion-icon>   
+         </ion-button>
+        </ion-grid>
+
+    <br>
+
+
+    <inc-page-loader  [loading]="!loading"></inc-page-loader>
+
+    <div *ngIf="show">
+
+    <ion-card class="chart1">
+
+      <canvas *ngIf="chartDisplay" id="myChart" class="chart1" height="30%" width="100%" style="display: flex ; position: relative"
+      ></canvas>
+      </ion-card>
+
+ 
+    
+
+    <ion-card *ngFor="let meals of Meats, let i = index" >
+
+      <ion-card-header style="width: 100%" col-3 text-left style="position: relative">
+        <ion-card-title>
+          <ion-label>
+            {{meals.label | translate}}
+          </ion-label>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-subtitle>
+        <ion-row class="c1" style="width: 100% ; position: relative ;text-align: -webkit-center;">
+
+          <ion-col style="width: 100%" col-3 text-center style="position: relative">
+            <ion-label >
+              <h1   style=" font-size:15px ;color:black; font-weight: 600;" >
+                {{'FOOD' | translate}}
+              </h1>
+              </ion-label>
+          </ion-col>
+
+          <ion-col style="width: 100%" col-3 text-center style="position: relative ">
+
+            <ion-label>
+
+              <h1   style=" font-size:15px ;color:black; font-weight: 600;" >
+                {{'QUANTITY' | translate}}
+
+              </h1>
+
+            </ion-label>
+          </ion-col>
+
+          <ion-col style="width: 100%" col-3 text-center style="position: relative">
+            <div>
+              <ion-label>
+                <h1   style=" font-size:15px ;color:black; font-weight: 600;" >
+                  {{'ENERGIE' | translate}}
+
+                </h1>
+                
+              </ion-label>
+            </div>
+          </ion-col>
+          <ion-col style="width: 100%" col-3 text-center style="position: relative">
+            <div>
+              <ion-label >
+                <h1   style=" font-size:15px ;color:black; font-weight: 600;" >
+                  {{'PROTEIN' | translate}}
+
+                </h1>
+              </ion-label>
+            </div>
+          </ion-col>
+          <ion-col style="width: 100%" col-3 text-center style="position: relative">
+            <div>
+              <ion-label >
+                <h1   style=" font-size:15px ;color:black; font-weight: 600;" >
+                  {{'CARBONHYDRATE' | translate}}
+
+                </h1>
+                
+              </ion-label>
+            </div>
+          </ion-col>
+          <ion-col style="width: 100%" col-3 text-center style="position: relative">
+            <div>
+              <ion-label  >
+                <h1   style=" font-size:15px ;color:black; font-weight: 600;" >
+                  {{'FAT' | translate}}
+
+                </h1>
+              </ion-label >
+            </div>
+          </ion-col>
+          <ion-col cstyle="width: 100%" col-3 text-center style="position: relative">
+            <div>
+              <ion-button class="add-button" (click)="navToAdd(meals.type)"
+                style="position: relative;width:35px; height: 30px;">
+                +
+              </ion-button>
+            </div>
+          </ion-col>
+            
+        </ion-row>
+        <ion-row class="c2" *ngFor="let value of meals.values" style="width: 100%" style="position: relative;text-align: -webkit-center;">
+
+          <ion-col style="width: 100%" col-3 text-center style="position: relative">
+            <div>
+              <ion-label >
+                <h3 text-center  style=" font-size:13px ;color:black; font-weight: 400;">
+                  {{ value.valueString }}
+                </h3>
+              </ion-label>
+            </div>
+          </ion-col>
+          <ion-col style="width: 100%" col-3 text-center style="position: relative">
+            <div>
+              <ion-label>
+                <h3 style=" font-size:13px ;color:black; font-weight: 400;">
+                  {{ value.component[0].valueQuantity.value  }} g
+                </h3>
+              </ion-label>
+            </div>
+          </ion-col>
+          <ion-col style="width: 100%" col-3 text-center style="position: relative">
+            <div>
+              <ion-label>
+                <h3  text-center style=" font-size:13px ;color:black; font-weight: 400;">
+                  {{ value.component[1].valueQuantity.value |  number:'1.1-2'}} kcal
+                </h3>
+              </ion-label>
+            </div>
+          </ion-col>
+          <ion-col style="width: 100%" col-3 text-center style="position: relative">
+            <div>
+              <ion-label>
+                <h3 text-center style=" font-size:13px ;color:black; font-weight: 400;">
+                  {{ value.component[2].valueQuantity.value |  number:'1.1-2' }} g
+                </h3>
+              </ion-label>
+            </div>
+          </ion-col>
+          <ion-col style="width: 100%" col-3 text-center style="position: relative">
+            <div>
+              <ion-label>
+                <h3 text-center  style=" font-size:13px ;color:black; font-weight: 400;">
+                  {{ value.component[3].valueQuantity.value |  number:'1.1-2'}} g
+                </h3>
+              </ion-label>
+            </div>
+          </ion-col>
+          <ion-col style="width: 100%" col-3 text-center style="position: relative">
+            <div>
+              <ion-label>
+                <h3  text-center style=" font-size:13px ;color:black; font-weight: 400;">
+                  {{ value.component[4].valueQuantity.value |  number:'1.1-2'}} g
+                </h3>
+              </ion-label>
+            </div>
+          </ion-col>
+          <ion-col style="width: 100%" col-3 text-center style="position: relative">
+            <button *ngIf="value.id" mat-icon-button [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button id="patient-menu-view-button" class="menuItem" mat-menu-item
+                (click)="navToEdit(value.id)">{{'EDIT' | translate}}</button>
+              <button id="patient-menu-edit-button" class="menuItem" mat-menu-item
+                (click)='presentAlertConfirm(value.id, value.valueString)'>{{'DELETE' | translate}}
+              </button>
+            </mat-menu>
+          </ion-col>
+
+        </ion-row>
+
+      </ion-card-subtitle>
+      <ion-card-content>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  </inc-container>
+</ion-content>

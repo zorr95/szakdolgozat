@@ -1,0 +1,115 @@
+<inc-toolbar withBack="false"></inc-toolbar>
+<ion-content>
+  <ion-toolbar style="position: fixed;">
+    <ion-title>{{'OBSERVATIONS' | translate}}</ion-title>
+  </ion-toolbar>
+  <inc-container>
+    <br>
+    <br>
+    <br>
+    <nutri-timeline (selectedDate)="getObs($event)" > </nutri-timeline>
+      <ion-row>
+        <ion-col>
+          <ion-segment #segment mode="ios"  style="background-color: #1976D2;"   value="all" (ionChange)="segmentChange($event)">
+            <ion-segment-button *ngFor="let segment of segments" [value]="segment.value" style="font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
+              {{segment.text | translate}}
+            </ion-segment-button>
+          </ion-segment>
+        </ion-col>
+      </ion-row>
+ 
+    <inc-err-no-data subjectName="megfigyelés rögzitve" noDesc="true" *ngIf=" userData == 0">
+    </inc-err-no-data>
+    <inc-page-loader [loading]="loading"></inc-page-loader>
+    <div  class="d1" *ngFor="let u of userData , let i = index">
+      <ion-card *ngIf="u.calories < 2000" style="border-left: 8px solid limegreen">
+        <ion-row>
+          <ion-col style="align-self: center;">
+            <ion-card-title>
+              <ion-item lines="none">
+                <ion-avatar slot="start">
+                  <div incMonoAvatar [name]="u.practitioner.nameText" ></div>
+                </ion-avatar>
+                <ion-label class="n" style="padding: 3%;  font-size:16px ;color:black; font-weight: 400; width: max-content;">
+                  {{u.practitioner.nameText}}
+                </ion-label>
+              </ion-item>
+            </ion-card-title>
+          </ion-col>
+          <ion-col>
+            <ion-item lines="none"  style="text-align: center"  lines="none" class ="i" style="text-align: center;  width: 150%;   right: 20%;">
+            <ion-row  class="r1" style="display: contents;font-size: 13px;font-weight: 400;">
+              <ion-col>{{'ENERGIE' | translate}}</ion-col>
+              <ion-col>{{'PROTEIN' | translate}}</ion-col>
+              <ion-col>{{'CARBONHYDRATE' | translate}}</ion-col>
+              <ion-col>{{'FAT' | translate}}</ion-col>
+            </ion-row>
+          </ion-item>
+          <ion-item style="text-align: center"  lines="none" class ="i" style="text-align: center;  right: 20%;  width: 150%;" lines="none">
+            <ion-row  class="r1" style="display: contents; font-size: 13px;font-weight: 400;">
+              <ion-col>{{ u.calories |  number:'1.1-2' }} kcal</ion-col>
+              <ion-col>{{ u.protein |  number:'1.1-2'}} g</ion-col>
+              <ion-col>{{ u.ch |  number:'1.1-2' }} g</ion-col>
+              <ion-col>{{ u.fat |  number:'1.1-2' }} g</ion-col>
+            </ion-row>
+          </ion-item>
+          </ion-col>
+          <ion-col style="align-self: center; left: 20%;" >
+            <ion-row>
+              <ion-avatar   class="a" style="width: 25px; height: 25px;" (click)="navToDetails(u.practitioner.id)" >
+                <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcThbgUMe30iAxqEFaI9Tm-ykzCeeNUEdePAlb7cPOIDo03ohzK0&usqp=CAU">
+              </ion-avatar>
+            </ion-row>
+   
+          </ion-col>
+         
+        </ion-row>
+   
+      </ion-card>
+      <ion-card *ngIf="u.calories >= 2000" style="border-left: 8px solid rgb(218, 17, 17);">
+        <ion-row>
+          <ion-col style="align-self: center;">
+            <ion-card-title>
+              <ion-item lines="none">
+                <ion-avatar slot="start">
+                  <div incMonoAvatar [name]="u.practitioner.nameText" ></div>
+                </ion-avatar>
+                <ion-label  class="n"  style="padding: 3%;  font-size:16px ;color:black; font-weight: 400; width: max-content;">
+                  {{u.practitioner.nameText}}
+                </ion-label>
+              </ion-item>
+            </ion-card-title>
+          </ion-col>
+          <ion-col>
+            <ion-item lines="none"  style="text-align: center"  lines="none" class ="i" style="text-align: center;  width: 150%;   right: 20%;">
+            <ion-row class="r1" style="display: contents;font-size: 13px; font-weight: 400;">
+              <ion-col>{{'ENERGIE' | translate}}</ion-col>
+              <ion-col>{{'PROTEIN' | translate}}</ion-col>
+              <ion-col>{{'CARBONHYDRATE' | translate}}</ion-col>
+              <ion-col>{{'FAT' | translate}}</ion-col>
+            </ion-row>
+          </ion-item>
+          <ion-item style="text-align: center"  lines="none" class ="i" style="text-align: center;  width: 150%;  right: 20%;" lines="none">
+            <ion-row  class="r1" style="display: contents; font-size: 13px; font-weight: 400;">
+              <ion-col>{{ u.calories |  number:'1.1-2' }} kcal</ion-col>
+              <ion-col>{{ u.protein |  number:'1.1-2'}} g</ion-col>
+              <ion-col>{{ u.ch |  number:'1.1-2' }} g</ion-col>
+              <ion-col>{{ u.fat |  number:'1.1-2' }} g</ion-col>
+            </ion-row>
+          </ion-item>
+          </ion-col>
+          <ion-col style="align-self: center; left: 20%;" >
+            <ion-row>
+              <ion-avatar  class="a"  style="width: 25px; height: 25px;" (click)="navToDetails(u.practitioner.id)" >
+                <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcThbgUMe30iAxqEFaI9Tm-ykzCeeNUEdePAlb7cPOIDo03ohzK0&usqp=CAU">
+              </ion-avatar>
+            </ion-row>
+   
+          </ion-col>
+         
+        </ion-row>
+      
+      </ion-card>
+    </div>
+  </inc-container>
+</ion-content>

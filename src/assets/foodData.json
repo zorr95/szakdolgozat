@@ -1,0 +1,54 @@
+{
+    "food": [
+        {
+            "value": "Meat",
+            "name": "Marhanyak",
+            "calorie": 145,
+            "protein": 22,
+            "ch": 0,
+            "fat": 5,
+            "measure": 100,
+            "unit": "g"
+        },
+        {
+            "value": "Meat",
+            "name": "Csirkemell",
+            "calorie": 100,
+            "protein": 22,
+            "ch": 0,
+            "fat": 5,
+            "measure": 100,
+            "unit": "g"
+        },
+        {
+            "value": "Meat",
+            "name": "Polip",
+            "calorie": 121,
+            "protein": 17,
+            "ch": 2,
+            "fat": 3,
+            "measure": 100,
+            "unit": "g"
+        },
+        {
+            "value": "Vegetable",
+            "name": "Répa",
+            "calorie": 66,
+            "protein": 3,
+            "ch": 12,
+            "fat": 2,
+            "measure": 100,
+            "unit": "g"
+        },
+        {
+            "value": "Bakery",
+            "name": "Kifli",
+            "calorie": 256,
+            "protein": 10,
+            "ch": 22,
+            "fat": 2,
+            "measure": 100,
+            "unit": "g"
+        }
+    ]
+}

@@ -1,0 +1,141 @@
+<ion-content>
+  <inc-toolbar defHref="/main/diaries" ></inc-toolbar>
+
+  <ion-toolbar color="primary">
+    <ion-title> {{'ADD_FOOD' | translate}} </ion-title>
+  </ion-toolbar>
+  <inc-container>
+    <form class="survey-add-container">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+      <ion-card *ngIf="updateTrue" style="display : block ; width: 100%">
+
+        <br>
+        <ion-label style="font-size:22px ; display:grid; padding: 2%;color:black; font-weight: 400;">
+          {{data | translate}}
+        </ion-label>
+        <br>
+        <br>
+        <ion-row  class="r1" size="12" size-md="6">
+          <br>
+          <br>
+          <ion-label style="font-size:20px ;  padding: 2%;color:black; font-weight: 200;">
+            {{'CATEGORY' |translate}}
+          </ion-label>
+          <br>
+          <br>
+          <br>
+          <ion-item class="c1"
+            style="width: 80%  ;position: relative ; align-items: center; display: inline-grid;text-align: -webkit-center;">
+
+
+            <br>
+            <br>
+            <ionic-selectable [(ngModel)]="food.value" [formControl]="categoryCtrl" [items]="category" [value]="value"
+              [canSearch]="true" (onChange)="compare($event)"placeholder="{{'SELECT_CATEGORY' | translate}}">
+
+            </ionic-selectable>
+
+          </ion-item>
+        </ion-row>
+        <br>
+        <ion-row size="12" size-md="6" class="r2">
+
+          <ion-label *ngIf="showTypes" style="font-size:20px ;  padding: 4%; color:black; font-weight: 200;">
+            {{'FOOD' |translate}}
+          </ion-label>
+          <br>
+          <ion-item *ngIf="showTypes" class="c2"
+            style="width: 80%; position: relative ; align-items: center; display: inline-grid;text-align: -webkit-center;">
+            <ionic-selectable [(ngModel)]="scategory" [formControl]="typeCtrl" [items]="test" [value]="name" (onChange)="updateCheck()"
+              [canSearch]="true" placeholder="{{'SELECT_FOOD' | translate}}">
+
+            </ionic-selectable>
+            <br>
+            <br>
+
+          </ion-item>
+        </ion-row>
+        <br>
+        <br>
+        <br>
+        <ion-row size="12" size-md="6" class="r3">
+          <ion-label style=" font-size:20px ; padding: 2%;color:black; font-weight: 200;">
+            {{'AMOUNT' |translate}}
+
+          </ion-label>
+          <br>
+          <br>
+          <ion-item  class="c3" style="width: 30%; position: relative ;text-align: -webkit-center;">
+            <ion-input (ionChange)="measuresMath()" type="number" [formControl]="numberCtrl" placeholder="{{'ENTER_AMOUNT' | translate}}"
+              style="width: 100%; padding: 2%;position: relative;" clearInput>
+            </ion-input>
+          </ion-item>
+          <ion-label style="font-size:20px ; padding: 3%;color:black; font-weight: 200;">
+            {{'UNIT' |translate}}
+          </ion-label>
+          <br>
+          <br>
+          <ion-item class="c4" style="width: 33%;position: relative ;text-align: -webkit-center;">
+            <ion-label>
+              {{'UNIT' |translate}}
+            </ion-label>
+            <ion-select (ionChange)="measuresMath($event)" [formControl]="measuresCtrl" placeholder="{{'SELECT_MEASURE' | translate}}"
+              style="min-width: 100%; padding: 0;position: relative;">
+              <ion-select-option *ngFor="let m of measures" [value]="m.value" style="width: 100%; padding: 0">
+                {{m.name}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-row>
+        <br>
+      
+        <ion-row size="12" size-md="6" class="r4">
+          <br>
+          <br>
+          <ion-label style="font-size:20px ; padding: 3%;color:black; font-weight: 200;">
+            {{'DATE' | translate}} </ion-label>
+          <br>
+          <br>
+          <ion-item  class="c5"style="width: 40%; position: relative ;text-align: -webkit-center;">
+            <ion-datetime [formControl]="dateCtrl" display-format="DDDD MMM D, YYYY" min="2005" max="2022"
+              style="min-width: 100%; padding: 0;position: relative; "></ion-datetime>
+          </ion-item>
+          <ion-label style="font-size:20px ; padding: 2%;color:black; font-weight: 200;">
+            {{'TIME' | translate}}</ion-label>
+          <br>
+          <br>
+          <ion-item class="c6" *ngIf="timeChange" style="width: 33%;position: relative ;text-align: -webkit-center;">
+            <ion-datetime [formControl]="dateCtrl" display-format="HH:mm"
+              style="min-width: 100%; padding: 0;position: relative;"></ion-datetime>
+          </ion-item>
+        </ion-row>
+        <br>
+        <br>
+        <br>
+        <ion-row class="ion-float-right ion-margin-bottom">
+          <ion-item lines="none">
+            <ion-button style="position: relative ;height: 70%;" fill="outline" color="primary" id="cancelBtn"
+              *ngIf="filteredFoods" (click)="discard($event)" class="ion-margin-end">
+              <ion-icon slot="start" name="close"></ion-icon>{{'REJECT'| translate}}
+            </ion-button>
+            <ion-button style="position: relative ;height: 70%;" fill="outline" color="primary" id="resetBtn"
+              (click)="resetForm($event)" class="ion-margin-end">
+              <ion-icon slot="start" name="refresh"></ion-icon>{{'AGAIN' | translate}}
+            </ion-button>
+            <ion-button style="position: relative;height: 70%; width: 100%;" (click)="dataModify()">
+              <ion-icon slot="start" name="save"></ion-icon>{{'SAVE' | translate}}
+            </ion-button>
+          </ion-item>
+        </ion-row>
+        <br>
+        <br>
+        <br>
+      </ion-card>
+    </form>
+  </inc-container>
+</ion-content>

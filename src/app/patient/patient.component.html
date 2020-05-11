@@ -1,0 +1,67 @@
+<inc-toolbar withBack="false"></inc-toolbar>
+<ion-content>
+  <ion-toolbar style="position: fixed;">
+    <ion-title>{{'PATIENT_LIST' | translate}}</ion-title>
+  </ion-toolbar>
+  <inc-container>
+
+
+    <br>
+    <br>
+    <br>
+
+    <ion-row>
+      <ion-col style="width: 50%;" class="c1">
+
+        <ion-item  id="search" lines="none" style="width: 100%; text-align: center">
+          <ion-searchbar (ionChange)="searchUser($event.target.value)"  placeholder="{{'SEARCH' | translate}}">
+          </ion-searchbar>
+
+        </ion-item>
+      </ion-col>
+      <ion-col style="width: 50%;text-align-last:right" >
+        <ion-button id="add" class="c2" color="warning" (click)="Add()">{{'PATIENT_ADD' | translate}}</ion-button>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-card id="patient-row"  *ngFor="let u of users" style="border-left: 8px solid orange;">
+      <ion-row>
+        <ion-col (click)="navToDetails(u.id)">
+          <ion-card-title>
+
+
+            <ion-item lines="none">
+
+              <ion-avatar slot="start">
+                <div incMonoAvatar [name]="u.name[0].text" ></div>
+              </ion-avatar>
+              <ion-label  class="l" style="padding: 3%;  font-size:16px ;color:black; font-weight: 400; width: max-content;">
+
+                {{u.name[0].text}}
+
+              </ion-label>
+            </ion-item>
+          </ion-card-title>
+
+        </ion-col>
+        <ion-col style="width: 100%" col-3 text-center
+          style="position: relative ; text-align: right; align-self: center; color: black;">
+          <button id="patient-menu-button" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button id="patient-menu-view-button" class="menuItem" mat-menu-item
+              (click)="navToDetails(u.id)">{{'VIEW' | translate}}</button>
+              <button id="patient-menu-edit-button" class="menuItem" mat-menu-item (click)="navToEdit(u.id)"
+             >{{'EDIT' | translate}}</button>
+             <button id="patient-menu-delete-button" class="menuItem" mat-menu-item  (click)='deleteAlert(u.id, u.name[0].text)'>{{'DELETE' | translate}}</button>
+          </mat-menu>
+        </ion-col>
+      </ion-row>
+
+
+
+    </ion-card>
+  </inc-container>
+</ion-content>

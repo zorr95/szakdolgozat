@@ -1,0 +1,92 @@
+.but1{
+    text-align: left;
+    width: 50px;
+}
+
+.but2{
+    text-align: left;
+    width: 50px;
+
+}
+
+.but3{
+    text-align: left;
+    width: 50px;
+
+    
+}
+
+.c1 {
+
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-size: large;
+    font-weight: bold;
+    color: black;
+    font-stretch: expanded;
+
+}
+.c2 {
+
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-size: normal;
+    font-weight: bold;
+    color: black;
+    font-stretch: expanded;
+
+}
+
+.label1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: oblique;
+    font-size: normal;
+    font-weight: inherit;
+    color: black;
+    font-stretch: expanded;
+
+}
+
+.add-button {
+
+   
+    width: 30%;
+    height: 100%;
+
+}
+.delete-button{
+
+    width: 30%;
+    height: 100%;
+}
+ion-card {
+    cursor: pointer;
+}
+
+    .chart1 {
+        width: 100% !important ;
+        height: 30% !important;
+    }
+
+@media(max-width: 500px){
+	
+    .g{
+        display: inline !important;
+
+    }
+
+
+
+
+}
+
+
+@media(max-width: 350px){
+	.chart1{
+        visibility: hidden;
+    }
+
+   
+}

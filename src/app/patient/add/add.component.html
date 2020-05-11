@@ -1,0 +1,174 @@
+<inc-toolbar defHref="/main/patient" ></inc-toolbar>
+<ion-content>
+  <ion-toolbar style="position: fixed;">
+    <ion-title>{{'PATIENT_ADD' | translate}}</ion-title>
+  </ion-toolbar>
+
+
+
+
+
+
+  <inc-container>
+    <br>
+    <br>  <br>
+    <br>
+    <ion-card *ngIf="updatePerson"> 
+      <br>
+      <br>
+      <br>
+      <ion-label style="font-size:20px ;  padding: 2%;color:black; font-weight: 200; ">
+        {{'GENDER' | translate}}</ion-label>
+        
+
+          <br>
+
+          <br>
+          <ion-row class="r1">
+            <ion-item  class="i1" style="width: 35%  ;position: relative ; align-items: center; padding: 2%;">
+              <ion-label>{{'GENDER' | translate}}
+              </ion-label>
+              <br>
+              <ion-select [formControl]="genderCtrl" placeholder="{{'SELECT_GENDER' |translate }}"
+                style="min-width: 100%; padding: 0;position: relative ;text-align: -webkit-center;">
+                <ion-select-option *ngFor="let g of Gender" [value]="g.type">
+                  {{g.label | translate}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-row>
+        
+          <br>
+          <br>      
+             <ion-label style="font-size:20px ;  padding: 2%;color:black; font-weight: 200; ">
+            {{'NAME' | translate}}</ion-label>
+            <br>
+            <br>
+            <br>
+          <ion-row style="text-align:-webkit-center" class="r2">
+        
+          <ion-col style="width: 25%;">
+            <ion-item class="i1"  style="width: 90%;text-align:center ; left: 5%;">
+              <ion-input type="text" [formControl]="prefixCtrl" placeholder=" {{'PREFIX' | translate}}"
+                style="width: 20%; padding: 2%;position: relative;" clearInput>
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col style="width: 25%;">
+            <ion-item style="width: 95%;text-align: center; " >
+              <ion-input type="text" [formControl]="familyCtrl" placeholder=" {{'FIRSTNAME' | translate}}"
+                style="width: 30%; padding: 2%;position: relative;" clearInput>
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col style="width: 25%;" class="r3">
+            <ion-item class="i1"  style="width: 90%;text-align: center; ">
+              <ion-input type="text" [formControl]="givenCtrl" placeholder=" {{'LASTNAME' | translate}}"
+                style="width: 30%; padding: 2%;position: relative;" clearInput>
+              </ion-input>
+            </ion-item>
+          </ion-col>
+     
+
+        </ion-row>
+        <br>
+        <br>
+      <br>
+      <ion-label style="font-size:20px ;  padding: 2%;color:black; font-weight: 200; ">
+        {{'ADDRESS' | translate}}</ion-label>
+        <br> 
+        <br>
+
+      <ion-row size="12" size-md="6"  style="text-align:-webkit-center" class="r4">
+
+      
+        <br>
+        <ion-col style="width: 25%;text-align:-webkit-center">
+          <ion-item  style="width: 100%;">
+            <ion-input type="text" [formControl]="countryCtrl" style="width: 30%; position: relative;text-align:-webkit-center"
+            clearInput placeholder=" {{'COUNTRY' | translate}}">
+          </ion-input>
+          </ion-item>
+        </ion-col>
+    
+        <ion-col style="width: 20%;">
+
+          <ion-item style="width: 100%;">
+            <ion-input type="number" [formControl]="postalCodeCtrl" style="width: 20%; position: relative;text-align:-webkit-center"
+            clearInput placeholder=" {{'POSTALCODE' | translate}}">
+          </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col style="width: 25%;">
+          <ion-item style="width: 100%;">
+            <ion-input type="text" [formControl]="cityCtrl" style="width: 25%;position: relative;text-align:-webkit-center" clearInput
+            placeholder="{{'CITY' | translate}}">
+          </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col style="width: 25%;">
+
+        <ion-item style="width: 100%;">
+           
+        <ion-input type="text" [formControl]="lineCtrl" style="width: 25%;position: relative;text-align:-webkit-center" clearInput
+        placeholder=" {{'STREET' | translate}}">
+      </ion-input>
+        </ion-item>
+      </ion-col>
+
+
+      </ion-row>
+      <br>  
+   
+        
+      <br>
+      <ion-label style=" font-size:20px ; padding: 2%;color:black; font-weight: 200; ">
+        {{'CONTACT' | translate}}
+      </ion-label>
+      <br>
+
+      <ion-row class="r5">
+        <br>
+        
+        <br>
+        <ion-col>
+          <ion-item class="i1"  style="width: 85%;left: 5%;">
+            <ion-input type="text" [formControl]="emailCtrl" style="width: 30%; padding: 2%;position: relative;text-align:-webkit-center" clearInput
+            placeholder="E-mail">
+          </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+        <ion-item class="i1"  style="width: 85%">
+          <ion-input type="number" [formControl]="phoneCtrl" style="width: 30%; padding: 2%;position: relative;text-align:-webkit-center" clearInput
+          placeholder=" {{'PHONE' | translate}}">
+        </ion-input>
+        </ion-item>
+        </ion-col>
+      
+      </ion-row>
+
+      <br>
+      <br>
+      <br>
+      <ion-row class="ion-float-right ion-margin-bottom">
+        <ion-item lines="none">
+          <ion-button style="position: relative ;height: 70%;" fill="outline" color="primary" id="cancelBtn"
+    (click)="discard($event)" class="ion-margin-end">
+            <ion-icon slot="start" name="close"></ion-icon> {{'REJECT' | translate}}
+          </ion-button>
+          <ion-button style="position: relative ;height: 70%;" fill="outline" color="primary" id="resetBtn"
+            (click)="resetForm($event)" class="ion-margin-end">
+            <ion-icon slot="start" name="refresh"></ion-icon> {{'AGAIN' | translate}}
+          </ion-button>
+          <ion-button style="position: relative;height: 70%; width: 100%;"(click)="dataModify($event)" >
+            <ion-icon slot="start" name="save"></ion-icon> {{'SAVE' | translate}}
+          </ion-button>
+        </ion-item>
+      </ion-row>
+      <br>
+      <br>
+    </ion-card>
+
+  </inc-container>
+</ion-content>

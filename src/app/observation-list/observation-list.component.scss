@@ -1,0 +1,29 @@
+ion-segment-button:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  ion-segment-button:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  ion-segment {
+    height: 48px;
+  }
+  .d1{
+    @media(max-width: 500px){
+        display: inline-table;
+    }
+
+    @media(max-width: 400px){
+     .r1{
+      display: grid !important
+
+     }
+     .n{
+       display: inline-table!important;
+     }
+     .a{
+       left:1%!important;
+     }
+  }
+  }
