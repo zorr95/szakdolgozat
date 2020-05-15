@@ -8,8 +8,10 @@ import { NavbarPage } from '../pages/navbar.po';
 
 describe('On Patient Page ', () => {
     const loginPage = new LoginPage();
-    const patientList = new PatientListPage();
+    let patientList = new PatientListPage();
     const navbarPage = new NavbarPage();
+    const topBarPage = new TopBarPage();
+    const toolBarPage = new ToolbarPage();
     beforeAll(() => {
         browser.driver.manage().window().maximize();
         browser.ignoreSynchronization = true;
@@ -19,7 +21,7 @@ describe('On Patient Page ', () => {
 
 
 
-    fit('Patient list to be visible', () => {
+    it('Patient list to be visible', () => {
         navbarPage.patientListLink().click();
         expect(patientList.patientAddButton().isDisplayed()).toBeTruthy();
         expect(patientList.searchPatient().isDisplayed()).toBeTruthy();
@@ -44,5 +46,11 @@ describe('On Patient Page ', () => {
         expect(patientList.editPatient().isDisplayed()).toBeTruthy();
         expect(patientList.viewPatient().isDisplayed()).toBeTruthy();
 
+    });
+    afterAll(() => {
+        patientList = new PatientListPage();
+        patientList.navigateTo();
+        toolBarPage.loggedProfileToolbar().click();
+        topBarPage.userLogout().click();
     });
 });

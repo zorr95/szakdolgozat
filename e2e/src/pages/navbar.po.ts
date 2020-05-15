@@ -18,4 +18,14 @@ export class NavbarPage extends AppPage {
     }
 
 
+
+    DiariesListLink(): ElementFinder {
+        return super.get(element(by.id('Diaries')), false, true);
+    }
+
+    HealtlineLink(): ElementFinder {
+
+        return super.get(element(by.id('Healtline')), false, true);
+    }
+
 }
